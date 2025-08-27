@@ -34,6 +34,13 @@ jobs:
           cd app/qsl_manage_mobile
           flutter analyze --no-fatal-infos
 
+      # 恢复签名文件
+      - name: Prepare signing files
+        run: |
+          echo "${{ secrets.KEYSTORE_FILE }}" | base64 -d > app/qsl_manage_mobile/android/android-signing.jks
+          echo "${{ secrets.KEYSTORE_PROPERTIES }}" > app/qsl_manage_mobile/android/key.properties
+
+
       # 构建arm64架构 (arm64-v8a)
       - name: Build arm64 APK
         run: |
