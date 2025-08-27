@@ -1,0 +1,241 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    min-height: 100vh;
+    padding: 20px 0;
+    line-height: 1.6;
+}
+
+#app {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 头部样式 */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 25px 0;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+header:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.logo-icon {
+    color: #165DFF;
+    font-size: 2.5rem;
+    margin-right: 15px;
+    transition: transform 0.3s ease;
+}
+
+header:hover .logo-icon {
+    transform: rotate(5deg) scale(1.1);
+}
+
+h1 {
+    color: #1D2129;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.header-subtitle {
+    color: #4E5969;
+    font-size: 1.1rem;
+    margin-top: 8px;
+    opacity: 0.9;
+}
+
+/* 搜索区域样式 */
+.search-container {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    padding: 25px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.search-form {
+    display: flex;
+    gap: 12px;
+}
+
+.el-input {
+    flex: 1;
+}
+
+.el-input__wrapper {
+    border-radius: 8px;
+    height: 50px;
+    transition: all 0.3s ease;
+}
+
+.el-input__wrapper:focus-within {
+    box-shadow: 0 0 0 2px rgba(22, 93, 255, 0.2);
+    border-color: #165DFF;
+}
+
+.el-button {
+    height: 50px;
+    padding: 0 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.error-message {
+    color: #F53F3F;
+    font-size: 0.9rem;
+    margin-top: 8px;
+    padding-left: 12px;
+    animation: fadeIn 0.3s ease;
+}
+
+.length-indicator {
+    color: #86909C;
+    font-size: 0.8rem;
+    text-align: right;
+    margin-top: 4px;
+    padding-right: 12px;
+}
+
+/* 加载和结果样式 */
+.loading-container, .no-results, .results-table {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.loading-container {
+    margin-bottom: 20px;
+    padding: 40px 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.el-loading-mask {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.results-table {
+    padding: 0;
+    overflow: hidden;
+}
+
+.loading-text {
+    margin-left: 15px;
+    color: #4E5969;
+    font-size: 1.1rem;
+}
+
+.no-results-icon {
+    color: #C9CDD4;
+    font-size: 4rem;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.no-results-text {
+    color: #86909C;
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* 表格样式 */
+.el-table {
+    border: none;
+    width: 100%;
+}
+
+.el-table th {
+    background-color: #F7F8FA;
+    color: #4E5969;
+    font-weight: 600;
+    padding: 16px 0;
+    border-bottom: 1px solid #F2F3F5;
+}
+
+.el-table td {
+    padding: 16px 0;
+    border-bottom: 1px solid #F2F3F5;
+}
+
+.el-tag {
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+
+@media (max-width: 768px) {
+    .el-table {
+        font-size: 0.85rem;
+    }
+
+    .el-table-column {
+        width: auto !important;
+        min-width: 100px;
+    }
+
+    .results-table {
+        overflow-x: auto;
+    }
+
+    .el-table th,
+    .el-table td {
+        padding: 10px 6px !important;
+    }
+
+    .el-tag {
+        padding: 2px 6px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .el-table {
+        width: 100% !important;
+    }
+}

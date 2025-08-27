@@ -1,0 +1,18 @@
+DROP TABLE IF EXISTS QSLInfo;
+CREATE TABLE IF NOT EXISTS QSLInfo (
+    QSLCardId INTEGER PRIMARY KEY AUTOINCREMENT,
+    ToCallsign TEXT NOT NULL,
+    Received BOOLEAN DEFAULT False,
+    Sent BOOLEAN DEFAULT False,
+    ReceivedDate DATE,
+    SentDate DATE,
+    CreatedDate DATE DEFAULT CURRENT_TIMESTAMP,
+    Op TEXT DEFAULT 'BY'
+);
+
+INSERT INTO QSLInfo (QSLCardId, ToCallsign, Received, Sent, ReceivedDate, SentDate) VALUES
+(250428001, 'BD4RDG', True, True, '2023-04-28', '2023-05-01'),
+(250428002, 'BD4RDG', False, True, '2023-04-28', '2023-05-01');
+
+
+CREATE INDEX IF NOT EXISTS idx_qslinfo ON QSLInfo (ToCallsign);

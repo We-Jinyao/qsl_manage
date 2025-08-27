@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QSL Manager</title>
+    <!-- 外部资源 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/element-plus"></script>
+
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div id="app">
+    <!-- 头部区域 -->
+    <header class="fade-in">
+        <div class="header-content">
+            <i class="fa-solid fa-wifi logo-icon"></i>
+            <h1>QSL Manager</h1>
+        </div>
+        <p class="header-subtitle">Search and manage your QSL records</p>
+    </header>
+
+    <!-- 搜索区域 -->
+    <div class="search-container fade-in" style="animation-delay: 0.1s">
+        <el-form :model="searchForm" ref="searchFormRef" :rules="searchRules" class="search-form">
+            <el-input
+                    v-model="searchForm.callsign"
+                    placeholder="Enter callsign (4-8 alphanumeric characters)"
+                    clearable
+                    @keyup.enter="handleSearch"
+                    @input="filterInput"
+                    class="search-input"
+                    maxlength="8"
+            ></el-input>
+            <el-button
+                    type="primary"
+                    @click="handleSearch"
+                    :loading="isLoading"
+                    :disabled="!isInputValid"
+            >
+                <i class="fa-solid fa-search mr-1"></i> Search
+            </el-button>
+        </el-form>
+        <el-form-item v-if="searchError" prop="callsign">
+            <div class="error-message">{{ searchError }}</div>
+        </el-form-item>
+        <div class="length-indicator" v-if="searchForm.callsign.length > 0">
+            {{ searchForm.callsign.length }} / 8 characters
+        </div>
+    </div>
+
+    <!-- 加载状态 -->
+    <div
+            v-if="isLoading"
+            v-loading="isLoading"
+    element-loading-text="Searching for QSL records..."
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(255, 255, 255, 0.8)"
+    class="loading-container fade-in"
+    style="animation-delay: 0.2s; min-height: 200px;"
+    >
+    <div style="height: 200px;"></div>
+</div>
+
+    <!-- 结果表格 -->
+    <div v-if="!isLoading && searchResults.length" class="results-table fade-in" style="animation-delay: 0.2s">
+        <el-table
+                :data="searchResults"
+                border
+                stripe
+        >
+            <el-table-column
+                    prop="ToCallsign"
+                    label="Callsign"
+                    align="center"
+            ></el-table-column>
+            <el-table-column
+                    prop="Received"
+                    label="Received"
+                    align="center"
+            >
+                <template #default="scope">
+                    <el-tag :type="scope.row.Received ? 'success' : 'info'">
+                        {{ scope.row.Received ? 'Yes' : 'No' }}
+                    </el-tag>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="Sent"
+                    label="Sent"
+                    align="center"
+            >
+                <template #default="scope">
+                    <el-tag :type="scope.row.Sent ? 'success' : 'info'">
+                        {{ scope.row.Sent ? 'Yes' : 'No' }}
+                    </el-tag>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="ReceivedDate"
+                    label="Received Date"
+                    align="center"
+            >
+                <template #default="scope">{{ formatDate(scope.row.ReceivedDate) }}</template>
+            </el-table-column>
+            <el-table-column
+                    prop="SentDate"
+                    label="Sent Date"
+                    align="center"
+            >
+                <template #default="scope">{{ formatDate(scope.row.SentDate) }}</template>
+            </el-table-column>
+        </el-table>
+    </div>
+
+    <!-- 无结果状态 -->
+    <div v-if="!isLoading && !searchResults.length && hasSearched" class="no-results fade-in" style="animation-delay: 0.2s">
+        <i class="fa-solid fa-file-circle-xmark no-results-icon"></i>
+        <p class="no-results-text">No QSL records found for the given callsign.</p>
+    </div>
+</div>
+
+<!-- 导入脚本-->
+<script type="module" src="./config.js"></script>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
