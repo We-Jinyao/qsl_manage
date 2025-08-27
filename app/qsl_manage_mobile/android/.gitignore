@@ -13,3 +13,4 @@ key.properties
 keyBase64.txt
 **/*.keystore
 **/*.jks
+*.jks
