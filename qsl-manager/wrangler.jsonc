@@ -7,6 +7,11 @@
 	"name": "qsl-manager",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-03-27",
+	"env": {
+		"development": {
+			"load_dotenv": true // 本地开发时自动加载 .env 文件
+		}
+	},
 	"observability": {
 		"enabled": true
 	},
@@ -21,18 +26,18 @@
 		  {
 			"binding": "DB",
 			"database_name": "qsl_manger", //cf控制台中的D1 SQL数据库名称
-			"database_id": "fd5ecea8-c5a6-40bc-8453-e6ebffb91a15" //数据库uuid
+			"database_id": "${D1_DATABASE_ID}" //数据库uuid
 		  }
 		],
 	//配置KV数据库
 	"kv_namespaces": [
 		{
 			"binding": "USER_KV",
-			"id": "745d9c77b3164c4da27388629803b67f" //用于存储用户账户和密码Hash的KV， 填入对应id
+			"id": "${KV1_NAMESPACE_ID}" //用于存储用户账户和密码Hash的KV， 填入对应id
 		},
 		{
 			"binding": "RATE_LIMIT_KV",
-			"id": "d3918a5ea10046e9ba5bfde5f217f7e4" //用于限制用户登录频率的KV， 填入对应id，需在auth.ts中启用
+			"id": "${KV2_NAMESPACE_ID}" //用于限制用户登录频率的KV， 填入对应id，需在auth.ts中启用
 		}
 		]
 	/**
