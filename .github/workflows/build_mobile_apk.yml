@@ -1,0 +1,64 @@
+name: Flutter Android Build
+
+# 触发条件：推送到master分支或创建PR时
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    # 在最新的Ubuntu环境中运行
+    runs-on: ubuntu-latest
+
+    steps:
+      # 检出代码仓库
+      - uses: actions/checkout@v4
+
+      # 安装Flutter SDK
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.35.2'  
+
+      # 安装项目依赖
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 运行代码分析
+      - name: Analyze code
+        run: flutter analyze
+
+      # 构建arm64架构 (arm64-v8a)
+      - name: Build arm64 APK
+        run: flutter build apk --release --target-platform android-arm64
+
+      # 构建armv7架构 (armeabi-v7a)
+      - name: Build armv7 APK
+        run: flutter build apk --release --target-platform android-arm
+
+      # 构建x64架构 (x86_64)
+      - name: Build x64 APK
+        run: flutter build apk --release --target-platform android-x64
+
+      # 上传arm64架构的APK
+      - name: Upload arm64 APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-arm64
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      # 上传armv7a架构的APK
+      - name: Upload armv7a APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-armv7a
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      # 上传x64架构的APK
+      - name: Upload x64 APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-x64
+          path: build/app/outputs/flutter-apk/app-release.apk
