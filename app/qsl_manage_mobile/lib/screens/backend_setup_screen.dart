@@ -4,6 +4,8 @@ import '../providers/backend_provider.dart';
 import 'login_screen.dart';
 
 class BackendSetupScreen extends StatefulWidget {
+  const BackendSetupScreen({super.key});
+
   @override
   _BackendSetupScreenState createState() => _BackendSetupScreenState();
 }
@@ -54,10 +56,10 @@ class _BackendSetupScreenState extends State<BackendSetupScreen> {
                     );
                   }
                 },
-                child: Text('确认'),
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 50),
                 ),
+                child: Text('确认'),
               ),
             ],
           ),

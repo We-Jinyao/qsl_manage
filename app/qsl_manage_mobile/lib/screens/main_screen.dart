@@ -3,13 +3,11 @@ import 'package:provider/provider.dart';
 import '../providers/backend_provider.dart';
 import '../providers/server_agent_provider.dart';
 import '../services/auth_service.dart';
-import 'add_record_screen.dart';
-import 'edit_record_screen.dart';
 import 'login_screen.dart';
-import 'backend_setup_screen.dart';
-import 'package:flutter/services.dart';
 
 class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
   @override
   _MainScreenState createState() => _MainScreenState();
 }
@@ -156,10 +154,10 @@ class _MainScreenState extends State<MainScreen> {
             SizedBox(height: 32),
             ElevatedButton(
               onPressed: _isLoading ? null : _logout,
-              child: Text('登出'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red,
               ),
+              child: Text('登出'),
             ),
           ],
         ),

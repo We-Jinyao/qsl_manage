@@ -7,7 +7,7 @@ class BackendProvider extends ChangeNotifier {
   String? get backend => _backend;
 
   Future<String?> loadBackend() async {
-    _backend = await StorageUtils.getString('backend');
+    _backend = StorageUtils.getString('backend');
     notifyListeners();
     return _backend;
   }

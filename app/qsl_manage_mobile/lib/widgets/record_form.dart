@@ -7,11 +7,11 @@ class RecordForm extends StatefulWidget {
   final bool isEditing;
 
   const RecordForm({
-    Key? key,
+    super.key,
     this.initialData,
     required this.onSubmit,
     this.isEditing = false,
-  }) : super(key: key);
+  });
 
   @override
   _RecordFormState createState() => _RecordFormState();
@@ -141,12 +141,12 @@ class _RecordFormState extends State<RecordForm> {
               if (_sent)
                 ElevatedButton(
                   onPressed: _isSubmitting ? null : () => _selectDate(true),
-                  child: Text(_sentDate != null
-                      ? DateFormat('yyyy-MM-dd').format(_sentDate!)
-                      : '选择发送日期'),
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                   ),
+                  child: Text(_sentDate != null
+                      ? DateFormat('yyyy-MM-dd').format(_sentDate!)
+                      : '选择发送日期'),
                 ),
             ],
           ),
@@ -168,12 +168,12 @@ class _RecordFormState extends State<RecordForm> {
               if (_received)
                 ElevatedButton(
                   onPressed: _isSubmitting ? null : () => _selectDate(false),
-                  child: Text(_receivedDate != null
-                      ? DateFormat('yyyy-MM-dd').format(_receivedDate!)
-                      : '选择接收日期'),
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                   ),
+                  child: Text(_receivedDate != null
+                      ? DateFormat('yyyy-MM-dd').format(_receivedDate!)
+                      : '选择接收日期'),
                 ),
             ],
           ),
@@ -182,10 +182,10 @@ class _RecordFormState extends State<RecordForm> {
               ? CircularProgressIndicator()
               : ElevatedButton(
                   onPressed: _submit,
-                  child: Text(widget.isEditing ? '更新记录' : '添加记录'),
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(double.infinity, 50),
                   ),
+                  child: Text(widget.isEditing ? '更新记录' : '添加记录'),
                 ),
         ],
       ),

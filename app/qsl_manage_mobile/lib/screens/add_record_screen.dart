@@ -5,6 +5,8 @@ import '../services/handle_transaction.dart';
 import '../widgets/record_form.dart';
 
 class AddRecordScreen extends StatefulWidget {
+  const AddRecordScreen({super.key});
+
   @override
   _AddRecordScreenState createState() => _AddRecordScreenState();
 }
@@ -100,11 +102,11 @@ class _AddRecordScreenState extends State<AddRecordScreen> {
                       ? CircularProgressIndicator()
                       : ElevatedButton(
                           onPressed: _submitAllRecords,
-                          child: Text('提交所有记录'),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.green,
                             minimumSize: Size(double.infinity, 50),
                           ),
+                          child: Text('提交所有记录'),
                         ),
                 ],
               ),

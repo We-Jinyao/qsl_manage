@@ -7,7 +7,7 @@ import 'main_screen.dart';
 class LoginScreen extends StatefulWidget {
   final String backend;
 
-  LoginScreen({required this.backend});
+  const LoginScreen({super.key, required this.backend});
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -96,10 +96,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ? CircularProgressIndicator()
                   : ElevatedButton(
                       onPressed: _submitLogin,
-                      child: Text('登录'),
                       style: ElevatedButton.styleFrom(
                         minimumSize: Size(double.infinity, 50),
                       ),
+                      child: Text('登录'),
                     ),
             ],
           ),

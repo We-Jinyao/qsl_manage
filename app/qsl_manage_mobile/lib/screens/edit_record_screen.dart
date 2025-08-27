@@ -5,6 +5,8 @@ import '../services/handle_transaction.dart';
 import '../widgets/record_form.dart';
 
 class EditRecordScreen extends StatefulWidget {
+  const EditRecordScreen({super.key});
+
   @override
   _EditRecordScreenState createState() => _EditRecordScreenState();
 }
@@ -190,10 +192,10 @@ class _EditRecordScreenState extends State<EditRecordScreen> {
                       ? CircularProgressIndicator()
                       : ElevatedButton(
                           onPressed: _queryRecords,
-                          child: Text('查询'),
                           style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.symmetric(horizontal: 24, vertical: 18),
                           ),
+                          child: Text('查询'),
                         ),
                 ],
               ),
