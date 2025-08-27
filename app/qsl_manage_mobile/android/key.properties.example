@@ -1,0 +1,4 @@
+storePassword=******
+keyPassword=******
+keyAlias=myKey
+storeFile=../android-signing.jks
