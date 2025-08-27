@@ -32,6 +32,6 @@ npx wrangler d1 execute qsl_manger --remote --file=./schema.sql
 ```bash
 npx wrangler deploy 
 ```
-部署好后可以在worker的设置-变量和机密里设置两个密钥`API_SECRET`和`JWT_PUBLIC_KEY`分别作为API口令（用于编辑用户，推荐管理员保管）和鉴权公钥（用于用户登录鉴权及token分发，建议至少128位并严格保密），之后可以绑定自定义域名。
-2. 部署网页前端，在web/config.js中配置好后端地址，然后新建一个pages项目，将整个web文件夹拖进去部署即可，可自定义域名并在台站主页公开。
-3. App端配置及编译：请见app/README.md。
+部署好后可以在worker的设置-变量和机密里设置两个密钥`API_SECRET`和`JWT_PUBLIC_KEY`分别作为API口令（用于编辑用户，推荐管理员保管）和鉴权公钥（用于用户登录鉴权及token分发，建议至少128位并严格保密），之后可以绑定自定义域名。    
+2. 部署网页前端，在web/config.js中配置好后端地址，然后新建一个pages项目，将整个web文件夹拖进去部署即可，可自定义域名并在台站主页公开。    
+3. App端配置及编译：请见app/README.md。  
