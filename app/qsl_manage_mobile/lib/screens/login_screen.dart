@@ -20,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
 
   Future<void> _submitLogin() async {
+    print("[com.jinyao.moe.qsl_manage_mobile] login info submited!");
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;

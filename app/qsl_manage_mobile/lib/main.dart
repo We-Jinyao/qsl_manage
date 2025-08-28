@@ -13,6 +13,7 @@ import 'screens/edit_record_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await StorageUtils.init();
+  print("[com.jinyao.moe.qsl_manage_mobile] strat");
   runApp(MyApp());
 }
 

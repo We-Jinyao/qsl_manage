@@ -40,9 +40,12 @@ class AuthService{
   }
 
   static Future<bool> login(String username, String passwd, String backend) async{
+    print("[com.jinyao.moe.qsl_manage_mobile] into login func!");
     Dio dio = Dio();
+    print("[com.jinyao.moe.qsl_manage_mobile] try to login, username:$username, password:$passwd, backend:$backend");
     Response resp;
     resp = await dio.post("$backend/login", data: {"username":username, "password":passwd});
+    print("[com.jinyao.moe.qsl_manage_mobile] got resp: ${resp.data}");
     if(resp.statusCode!=200){
       return false;
     }
